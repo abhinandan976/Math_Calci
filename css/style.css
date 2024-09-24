@@ -1,0 +1,210 @@
+/* Global box-sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Font family styles */
+.gowun-batang-regular {
+    font-family: "Gowun Batang", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.gowun-batang-bold {
+    font-family: "Gowun Batang", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Dark and light mode toggle */
+body {
+    transition: background-color 0.5s, color 0.5s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.light-mode {
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    background-image: url('../images/image.png'); /* Your background image */
+    background-size: cover; /* Cover the whole area */
+    background-position: center; /* Center the image */
+    backdrop-filter: blur(8px); /* Glassmorphic blur */
+    color: #000;
+}
+
+/* Calculator styles */
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.calculator {
+    flex: 0 0 95%;
+}
+
+#toggle-mode {
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.result-screen {
+    width: 100%;
+    font-size: 3rem;
+    padding: 0.5rem;
+    margin-bottom: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Result screen styles in light mode */
+body.light-mode .result-screen {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent for glassmorphism */
+    color: #000;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px; /* Adds space between buttons */
+}
+
+button {
+    position: relative;
+    overflow: hidden; /* Hide overflow for the split effect */
+    font-size: 2rem;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    color: white; /* Set default text color to white */
+}
+
+/* Button layout adjustments */
+button:nth-child(-n+12) {
+    flex: 0 0 22%; /* Each button takes about 22% width */
+}
+
+/* Fourth row: 0 and . on the left side, + aligned under - */
+.btn[data-num="0"], .btn[data-num="."] {
+    flex: 0 0 34%; /* 0 and . each take 34% of the width */
+}
+
+.btn[data-num="+"] {
+    flex: 0 0 22%; /* + takes up 22% width and will align under - */
+}
+
+/* New buttons for power and modulo */
+.btn[data-num="^"], .btn[data-num="%"] {
+    flex: 0 0 48%; /* Each takes up 48% of the width */
+    margin-top: 0px; /* Align these two buttons */
+}
+
+/* Last row: Clear and = side by side */
+.btn-clear, .btn-equal {
+    flex: 0 0 48%; /* Each takes up 48% of the width */
+}
+
+/* Dark mode hover effect */
+/* General button styles (Dark Mode) */
+body.dark-mode button {
+    color: white; /* Ensure default button text is white in dark mode */
+}
+
+/* Styles for C and = buttons in Dark Mode */
+body.dark-mode .btn-clear, 
+body.dark-mode .btn-equal {
+    color: black; /* Set C and = text color to black in dark mode */
+    background-color: white; /* Slightly visible background for buttons */
+}
+
+/* Hover effect for C and = buttons in Dark Mode */
+body.dark-mode .btn-clear:hover, 
+body.dark-mode .btn-equal:hover {
+    color: white; /* Change text to white on hover */
+    background-color: rgba(0, 123, 255, 0.5); /* Blue background on hover */
+    box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.5); /* Blue shadow */
+    transform: scale(1.05); /* Add hover effect scaling */
+    border-radius: 15px; /* Rounded corners on hover */
+}
+
+/* Ensure all other buttons retain their original hover behavior */
+body.dark-mode button:hover {
+    color: white; /* Ensure non C/= buttons also have white text on hover */
+}
+
+/* Light mode hover effect (darker shadow) */
+body.light-mode button {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+    backdrop-filter: blur(5px); /* Light glassmorphic blur */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+body.light-mode .btn-clear, 
+body.light-mode .btn-equal {
+    color: black; /* Set C and = text color to black in dark mode */
+    background-color: black; /* Slightly visible background for buttons */
+}
+
+/* Light mode button hover effect */
+body.light-mode button:hover {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque on hover */
+    color: #000; /* Darker text */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: scale(1.08); /* Larger hover scale */
+    border-radius: 15px; /* More rounded corners on hover */
+}
+
+/* Light mode button active effect */
+body.light-mode button:active {
+    background: rgba(200, 200, 200, 0.9); /* Darker on click */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+    transform: scale(1.02); /* Slightly smaller scale on click */
+}
+
+/* Optional light mode gradient for buttons */
+body.light-mode button {
+    background: linear-gradient(145deg, #ffffff, #e0e0e0); /* Light gradient */
+}
+
+body.light-mode .btn-clear:hover, 
+body.light-mode .btn-equal:hover {
+    color: white; /* Change text to white on hover */
+    background-color: black; /* Blue background on hover */
+    transform: scale(1.05); /* Add hover effect scaling */
+    border-radius: 15px; /* Rounded corners on hover */
+}
+
+/* Ensure text stays white in dark mode on hover */
+body.dark-mode button:hover {
+    color: white;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    .calculator {
+        width: 100%;
+    }
+}
